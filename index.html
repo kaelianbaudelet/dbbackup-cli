@@ -105,16 +105,6 @@
             position: relative;
             margin-bottom: 120px;
         }
-
-        .install-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--primary);
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            display: block;
-        }
-
         .terminal-window {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -251,16 +241,15 @@
 <body>
     <div class="container">
         <nav>
-            <div class="brand">dbbackup<span>-cli</span> <div class="version-badge">v1.2.0</div></div>
+            <div class="brand">dbbackup <div class="version-badge">v1.2.0</div></div>
         </nav>
 
         <section class="hero">
             <h1>Automatisez vos sauvegardes.</h1>
-            <p>Un CLI Bash simple et fiable pour sauvegarder, chiffrer et transférer vos bases MariaDB/MySQL. Conçu pour la stabilité et la performance.</p>
+            <p>Un CLI Bash simple et fiable pour sauvegarder, chiffrer et transférer vos bases MariaDB/MySQL.</p>
         </section>
 
         <div class="install-wrap">
-            <span class="install-label">Installation Rapide</span>
             <div class="terminal-window">
                 <div class="terminal-header">
                     <div class="dot"></div>
@@ -268,7 +257,7 @@
                     <div class="dot"></div>
                 </div>
                 <div class="terminal-body">
-                    <div class="command" id="cmdText">curl -o install.sh https://raw.githubusercontent.com/kaelianbaudelet/dbbackup-cli/main/install.sh && chmod +x install.sh && sudo ./install.sh</div>
+                    <div class="command" id="cmdText">curl -sSL http://dbbackup-cli.kaelian.dev/install.sh | sudo bash</div>
                     <button class="copy-button" onclick="copyCmd()">COPIER</button>
                 </div>
             </div>
@@ -318,7 +307,7 @@
         </div>
 
         <footer>
-            <div>&copy; 2026 Copyright Kaelian Baudelet</div>
+            <div>&copy; 2026 Kaelian Baudelet</div>
         </footer>
     </div>
 
