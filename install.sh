@@ -55,17 +55,17 @@ else
     echo -e "${YELLOW}Note : Téléchargement des composants nécessaires...${NC}"
     
     # Télécharger le binaire principal et le désinstallateur
-    curl -sSLf "$RAW_URL/dbbackup" -o "$INSTALL_DIR/dbbackup"
-    curl -sSLf "$RAW_URL/uninstall.sh" -o "$INSTALL_DIR/uninstall.sh"
+    curl -sSLf "$RAW_URL/dbbackup?v=$(date +%s)" -o "$INSTALL_DIR/dbbackup"
+    curl -sSLf "$RAW_URL/uninstall.sh?v=$(date +%s)" -o "$INSTALL_DIR/uninstall.sh"
     
     # Télécharger les bibliothèques
     LIBS=("config.sh" "remote.sh" "backup.sh" "encryption.sh" "transfer.sh" "schedule.sh" "restore.sh")
     for lib in "${LIBS[@]}"; do
-        curl -sSLf "$RAW_URL/lib/$lib" -o "$INSTALL_DIR/lib/$lib"
+        curl -sSLf "$RAW_URL/lib/$lib?v=$(date +%s)" -o "$INSTALL_DIR/lib/$lib"
     done
     
     # Tentative de téléchargement de la config par défaut (optionnel)
-    curl -sSLf "$RAW_URL/config/dbbackup.conf" -o "$INSTALL_DIR/config/dbbackup.conf" 2>/dev/null || echo "Configuration par défaut non trouvée, elle sera générée au premier lancement."
+    curl -sSLf "$RAW_URL/config/dbbackup.conf?v=$(date +%s)" -o "$INSTALL_DIR/config/dbbackup.conf" 2>/dev/null || echo "Configuration par défaut non trouvée, elle sera générée au premier lancement."
 fi
 
 # Permissions
