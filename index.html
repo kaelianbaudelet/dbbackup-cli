@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DBBackup CLI | Documentation & Installation</title>
+    <title>dbbackup-cli docs</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0a0c10;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --border-color: rgba(255, 255, 255, 0.1);
-            --primary: #00d2ff;
-            --primary-glow: rgba(0, 210, 255, 0.3);
-            --secondary: #3a7bd5;
-            --text-main: #e6edf3;
-            --text-muted: #8b949e;
-            --accent: #ff007a;
-            --success: #238636;
+            --bg: #050505;
+            --surface: #0f0f0f;
+            --border: #222;
+            --primary: #58a6ff;
+            --text: #d1d1d1;
+            --text-strong: #fff;
+            --code-bg: #161b22;
+            --accent: #238636;
         }
 
         * {
@@ -28,338 +26,315 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
-        /* Animated Background */
-        .bg-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(0, 210, 255, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(58, 123, 213, 0.05) 0%, transparent 40%);
+        code, pre, .mono {
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 60px 40px;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 5rem;
+        /* Nav/Header */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 80px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .logo-box {
-            display: inline-block;
-            padding: 1rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 16px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 0 30px var(--primary-glow);
+        .brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-strong);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .logo-box svg {
-            width: 48px;
-            height: 48px;
-            fill: white;
+        .brand span {
+            color: var(--primary);
+        }
+
+        .version-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+
+        /* Hero */
+        .hero {
+            margin-bottom: 100px;
         }
 
         h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            letter-spacing: -2px;
-            background: linear-gradient(to bottom, #fff, #8b949e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--text-strong);
+            margin-bottom: 24px;
+            letter-spacing: -0.04em;
         }
 
-        .subtitle {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 650px;
+            color: #888;
+            margin-bottom: 40px;
         }
 
-        /* Install Section */
-        .install-box {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2.5rem;
-            backdrop-filter: blur(10px);
-            margin-bottom: 4rem;
+        /* Install Block */
+        .install-wrap {
             position: relative;
-            overflow: hidden;
+            margin-bottom: 120px;
         }
 
-        .install-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        .install-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .terminal-window {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .terminal-header {
+            background: #1a1a1a;
+            padding: 10px 16px;
+            display: flex;
+            gap: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: #333; }
+
+        .terminal-body {
+            padding: 24px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #000;
+        }
+
+        .command {
+            color: var(--primary);
+            word-break: break-all;
+        }
+
+        .command::before {
+            content: "$ ";
+            color: #555;
+        }
+
+        .copy-button {
+            background: var(--primary);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .copy-button:active { transform: scale(0.95); }
+
+        /* Content Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 80px;
         }
 
         h2 {
             font-size: 1.5rem;
-            margin-bottom: 1.5rem;
+            color: var(--text-strong);
+            margin-bottom: 24px;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 12px;
         }
 
-        .terminal {
-            background: #010409;
-            border-radius: 12px;
-            padding: 1.25rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
+        .doc-section {
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
         }
 
-        .terminal:hover {
-            border-color: var(--primary);
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.1);
+        ul {
+            list-style: none;
         }
 
-        .terminal-content {
-            color: var(--primary);
-            word-break: break-all;
-            margin-right: 1rem;
+        li {
+            margin-bottom: 30px;
         }
 
-        .copy-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: none;
-            color: var(--text-muted);
-            padding: 0.5rem;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
-
-        .terminal:hover .copy-btn {
-            background: var(--primary);
-            color: white;
-        }
-
-        .copy-success {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--success);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-        }
-
-        .copy-success.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Features Grid */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 4rem;
-        }
-
-        .feature-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 2rem;
-            border-radius: 16px;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .feature-icon {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .feature-card h3 {
-            margin-bottom: 0.75rem;
+        li strong {
+            display: block;
+            color: var(--text-strong);
+            margin-bottom: 8px;
             font-size: 1.1rem;
         }
 
-        .feature-card p {
-            color: var(--text-muted);
+        li p {
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        /* Code Blocks */
+        .snippet {
+            background: var(--code-bg);
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
             font-size: 0.9rem;
+            margin-top: 12px;
+            overflow-x: auto;
         }
 
-        /* Usage Section */
-        .usage {
-            margin-top: 4rem;
-        }
-
-        .usage h2 {
-            margin-bottom: 2rem;
-        }
-
-        .cmd-example {
-            margin-bottom: 1.5rem;
-        }
-
-        .cmd-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .code-block {
-            background: #0d1117;
-            padding: 1rem;
-            border-radius: 10px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            border-left: 3px solid var(--primary);
-        }
+        .snippet span { color: var(--primary); }
 
         footer {
-            text-align: center;
-            margin-top: 6rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            margin-top: 120px;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            color: #555;
+            font-size: 0.8rem;
         }
 
-        @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; }
-            .container { padding: 2rem 1.5rem; }
-            .install-box { padding: 1.5rem; }
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent);
+        }
+
+        .status-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); }
+
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            h1 { font-size: 3rem; }
+            .terminal-body { flex-direction: column; gap: 20px; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
-    <div class="bg-glow"></div>
-
     <div class="container">
-        <header>
-            <div class="logo-box">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 4.69 2 8s4.48 6 10 6 10-2.69 10-6-4.48-6-10-6zm0 10c-4.42 0-8-1.79-8-4s3.58-4 8-4 8 1.79 8 4-3.58 4-8 4zm0 2c-5.52 0-10 1.79-10 4v2c0 2.21 4.48 4 10 4s10-1.79 10-4v-2c0-2.21-4.48-4-10-4zm8 4c0 1.1-3.58 2-8 2s-8-.9-8-2v-1.29c1.94 1.12 4.83 1.29 8 1.29s6.06-.17 8-1.29V18z"/>
-                </svg>
-            </div>
-            <h1>DBBackup CLI</h1>
-            <p class="subtitle">Un outil Bash puissant et moderne pour automatiser, chiffrer et transférer vos sauvegardes MariaDB/MySQL.</p>
-        </header>
+        <nav>
+            <div class="brand">dbbackup<span>-cli</span> <div class="version-badge">v1.2.0</div></div>
+            <div class="status-badge"><div class="status-dot"></div> system stable</div>
+        </nav>
 
-        <section class="install-box">
-            <div id="copySuccess" class="copy-success">Copié dans le presse-papiers !</div>
-            <h2>
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                Installation rapide
-            </h2>
-            <div class="terminal" onclick="copyInstallCmd()">
-                <div class="terminal-content">
-                    <span style="color: var(--text-muted)">$</span> curl -o install.sh https://raw.githubusercontent.com/kaelianbaudelet/dbbackup-cli/main/install.sh && chmod +x install.sh && sudo ./install.sh
-                </div>
-                <button class="copy-btn">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-                </button>
-            </div>
-            <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
-                Exécutez cette commande sur n'importe quel système Linux pour installer le CLI globalement.
-            </p>
+        <section class="hero">
+            <h1>Automate backups.</h1>
+            <p>A simple, reliable Bash CLI to backup, encrypt, and transfer MariaDB/MySQL databases. Built for stability and speed.</p>
         </section>
 
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>Automatisé</h3>
-                <p>Planifiez vos sauvegardes en quelques secondes avec le module schedule intégré.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3>Chiffré</h3>
-                <p>Sécurisez vos données avec le chiffrement AES-256 via OpenSSL.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">☁️</div>
-                <h3>Distant</h3>
-                <p>Transférez automatiquement vos backups vers un serveur distant via SCP.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🛠️</div>
-                <h3>Complet</h3>
-                <p>Gestion des logs, rotation des fichiers et restauration en une commande.</p>
+        <div class="install-wrap">
+            <span class="install-label">Quick Installation</span>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="terminal-body">
+                    <div class="command" id="cmdText">curl -o install.sh https://raw.githubusercontent.com/kaelianbaudelet/dbbackup-cli/main/install.sh && chmod +x install.sh && sudo ./install.sh</div>
+                    <button class="copy-button" onclick="copyCmd()">COPY</button>
+                </div>
             </div>
         </div>
 
-        <section class="usage">
-            <h2>Commandes courantes</h2>
-            
-            <div class="cmd-example">
-                <span class="cmd-label">Faire une sauvegarde immédiate</span>
-                <div class="code-block">dbbackup backup -u root -p secret -d matable</div>
+        <div class="grid">
+            <div class="doc-section">
+                <h2>Capabilities</h2>
+                <ul>
+                    <li>
+                        <strong>Native Scheduler</strong>
+                        <p>Built-in cron management. Schedule backups with standard cron expressions without leaving the CLI.</p>
+                        <div class="snippet">dbbackup schedule add -n <span>"daily"</span> -c <span>"0 2 * * *"</span></div>
+                    </li>
+                    <li>
+                        <strong>AES-256 Encryption</strong>
+                        <p>Encrypt sensitive dumps locally using OpenSSL before any transfer. Secure by default.</p>
+                        <div class="snippet">dbbackup backup --encrypt -d <span>production_db</span></div>
+                    </li>
+                    <li>
+                        <strong>Remote Transfer</strong>
+                        <p>Automated SCP/SSH transfers to remote storage nodes with key-based authentication support.</p>
+                    </li>
+                </ul>
             </div>
 
-            <div class="cmd-example">
-                <span class="cmd-label">Planifier une sauvegarde (tous les jours à 2h)</span>
-                <div class="code-block">dbbackup schedule add -n "daily" -c "0 2 * * *" -u root -p secret -d mydb</div>
+            <div class="doc-section">
+                <h2>Quick Start</h2>
+                <ul>
+                    <li>
+                        <strong>Create a backup</strong>
+                        <p>Dumps the database, compresses it with gzip, and stores it in /usr/local/lib/dbbackup-cli/backups.</p>
+                        <div class="snippet">dbbackup backup -u root -p secret -d mydb</div>
+                    </li>
+                    <li>
+                        <strong>Restore data</strong>
+                        <p>Decompress and import a specific backup file into a target database.</p>
+                        <div class="snippet">dbbackup restore -f <span>backup_file.sql.gz</span> -d mydb</div>
+                    </li>
+                    <li>
+                        <strong>Check logs</strong>
+                        <p>View the operation history and verify that automated tasks ran successfully.</p>
+                        <div class="snippet">dbbackup log list</div>
+                    </li>
+                </ul>
             </div>
-
-            <div class="cmd-example">
-                <span class="cmd-label">Lister les sauvegardes effectuées</span>
-                <div class="code-block">dbbackup backup list</div>
-            </div>
-
-            <div class="cmd-example">
-                <span class="cmd-label">Restaurer une base de données</span>
-                <div class="code-block">dbbackup restore -f backup_2024.sql.gz -d mydb</div>
-            </div>
-        </section>
+        </div>
 
         <footer>
-            <p>DBBackup CLI - Créé avec ❤️ pour les administrateurs système</p>
-            <p style="margin-top: 0.5rem; font-size: 0.8rem;">Désinstaller : <code>sudo /usr/local/lib/dbbackup-cli/uninstall.sh</code></p>
+            <div>&copy; 2024 dbbackup-cli project</div>
+            <div>uninstaller: <code>sudo /usr/local/lib/dbbackup-cli/uninstall.sh</code></div>
         </footer>
     </div>
 
     <script>
-        function copyInstallCmd() {
-            const cmd = "curl -o install.sh https://raw.githubusercontent.com/kaelianbaudelet/dbbackup-cli/main/install.sh && chmod +x install.sh && sudo ./install.sh";
-            navigator.clipboard.writeText(cmd).then(() => {
-                const success = document.getElementById('copySuccess');
-                success.classList.add('visible');
-                setTimeout(() => {
-                    success.classList.remove('visible');
-                }, 2000);
-            });
+        function copyCmd() {
+            const text = document.getElementById('cmdText').innerText;
+            navigator.clipboard.writeText(text);
+            const btn = document.querySelector('.copy-button');
+            btn.innerText = 'COPIED!';
+            btn.style.background = '#238636';
+            setTimeout(() => {
+                btn.innerText = 'COPY';
+                btn.style.background = '#58a6ff';
+            }, 2000);
         }
     </script>
 </body>
