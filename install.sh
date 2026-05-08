@@ -65,7 +65,7 @@ else
     done
     
     # Tentative de téléchargement de la config par défaut (optionnel)
-    curl -sSLf "$RAW_URL/config/dbbackup.conf" -o "$INSTALL_DIR/config/dbbackup.conf" || echo "Configuration par défaut non trouvée, elle sera générée au premier lancement."
+    curl -sSLf "$RAW_URL/config/dbbackup.conf" -o "$INSTALL_DIR/config/dbbackup.conf" 2>/dev/null || echo "Configuration par défaut non trouvée, elle sera générée au premier lancement."
 fi
 
 # Permissions
