@@ -72,7 +72,7 @@ chmod +x "$INSTALL_DIR/dbbackup"
 
 # Support multi-utilisateurs : on autorise l'écriture dans les dossiers de données
 echo "Application des permissions multi-utilisateurs..."
-chmod 777 "$INSTALL_DIR/config" "$INSTALL_DIR/logs" "$INSTALL_DIR/backups"
+chmod -R 777 "$INSTALL_DIR/config" "$INSTALL_DIR/logs" "$INSTALL_DIR/backups"
 
 # Création du lien symbolique
 echo -e "Création du lien dans ${YELLOW}$BIN_LINK${NC}"
