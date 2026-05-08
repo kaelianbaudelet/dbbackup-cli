@@ -45,6 +45,7 @@ if $IS_LOCAL; then
     echo -e "Installation depuis les fichiers locaux..."
     cp -r "$SOURCE_DIR/lib/." "$INSTALL_DIR/lib/"
     cp "$SOURCE_DIR/dbbackup" "$INSTALL_DIR/"
+    cp "$SOURCE_DIR/uninstall.sh" "$INSTALL_DIR/"
     # On ne remplace pas la config existante si elle est déjà là
     if [[ -d "$SOURCE_DIR/config" ]]; then
         cp -rn "$SOURCE_DIR/config/." "$INSTALL_DIR/config/" || true
@@ -53,8 +54,9 @@ else
     echo -e "Installation à distance depuis GitHub..."
     echo -e "${YELLOW}Note : Téléchargement des composants nécessaires...${NC}"
     
-    # Télécharger le binaire principal
+    # Télécharger le binaire principal et le désinstallateur
     curl -sSLf "$RAW_URL/dbbackup" -o "$INSTALL_DIR/dbbackup"
+    curl -sSLf "$RAW_URL/uninstall.sh" -o "$INSTALL_DIR/uninstall.sh"
     
     # Télécharger les bibliothèques
     LIBS=("config.sh" "remote.sh" "backup.sh" "encryption.sh" "transfer.sh" "schedule.sh" "restore.sh")
@@ -69,6 +71,7 @@ fi
 # Permissions
 echo "Configuration des permissions..."
 chmod +x "$INSTALL_DIR/dbbackup"
+chmod +x "$INSTALL_DIR/uninstall.sh"
 
 # Support multi-utilisateurs : on autorise l'écriture dans les dossiers de données
 echo "Application des permissions multi-utilisateurs..."
