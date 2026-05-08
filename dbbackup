@@ -9,8 +9,8 @@
 
 set -euo pipefail
 
-# Obtenir le répertoire du script
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Obtenir le répertoire réel du script (résolution des liens symboliques)
+SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
 LIB_DIR="${SCRIPT_DIR}/lib"
 CONFIG_DIR="${SCRIPT_DIR}/config"
 LOG_DIR="${SCRIPT_DIR}/logs"
