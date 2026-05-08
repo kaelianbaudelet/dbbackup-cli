@@ -133,7 +133,7 @@ migrate_transfer_default() {
         }
     ' "${CONFIG_FILE}" > "${tmp_file}"
 
-    mv "${tmp_file}" "${CONFIG_FILE}"
+    mv -f "${tmp_file}" "${CONFIG_FILE}"
 
     if [[ "${had_remote_default}" == "yes" ]]; then
         log_info "Le transfert distant n'est plus activé par défaut."

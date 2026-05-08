@@ -176,7 +176,7 @@ remote_update_default_server() {
         printf 'DEFAULT_REMOTE_SERVER="%s"\n' "${new_default}" > "${tmp_file}"
     fi
 
-    mv "${tmp_file}" "${TRANSFER_CONFIG_FILE}"
+    mv -f "${tmp_file}" "${TRANSFER_CONFIG_FILE}"
     DEFAULT_REMOTE_SERVER="${new_default}"
 }
 

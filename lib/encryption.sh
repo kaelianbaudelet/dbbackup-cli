@@ -204,7 +204,7 @@ reencrypt_file() {
     fi
 
     # Remplacer le fichier original
-    mv "${temp_encrypted}" "${input_file}"
+    mv -f "${temp_encrypted}" "${input_file}"
     rm -f "${temp_decrypted}"
 
     log_success "Fichier rechiffré avec succès"

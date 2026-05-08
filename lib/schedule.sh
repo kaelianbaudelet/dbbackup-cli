@@ -71,7 +71,7 @@ schedule_remove() {
     # Supprimer du fichier de planifications
     local temp_file=$(mktemp)
     grep -v "^${name}|" "${SCHEDULES_FILE}" > "${temp_file}"
-    mv "${temp_file}" "${SCHEDULES_FILE}"
+    mv -f "${temp_file}" "${SCHEDULES_FILE}"
 
     # Supprimer la tâche cron
     remove_cron_job "${name}"
@@ -180,7 +180,7 @@ schedule_modify() {
     local temp_file=$(mktemp)
     grep -v "^${name}|" "${SCHEDULES_FILE}" > "${temp_file}"
     echo "${name}|${new_cron}|${new_host}|${new_port}|${new_user}|${new_password}|${new_db}|${new_remote}|${old_enabled}" >> "${temp_file}"
-    mv "${temp_file}" "${SCHEDULES_FILE}"
+    mv -f "${temp_file}" "${SCHEDULES_FILE}"
 
     # Mettre à jour la tâche cron si activée
     if [[ "${old_enabled}" == "yes" ]]; then
@@ -217,7 +217,7 @@ schedule_enable() {
             echo "${sname}|${cron_expr}|${db_host}|${db_port}|${db_user}|${db_password}|${db_name}|${remote_server}|${enabled}"
         fi
     done < "${SCHEDULES_FILE}" > "${temp_file}"
-    mv "${temp_file}" "${SCHEDULES_FILE}"
+    mv -f "${temp_file}" "${SCHEDULES_FILE}"
 
     # Installer la tâche cron
     install_cron_job "${name}"
@@ -251,7 +251,7 @@ schedule_disable() {
             echo "${sname}|${cron_expr}|${db_host}|${db_port}|${db_user}|${db_password}|${db_name}|${remote_server}|${enabled}"
         fi
     done < "${SCHEDULES_FILE}" > "${temp_file}"
-    mv "${temp_file}" "${SCHEDULES_FILE}"
+    mv -f "${temp_file}" "${SCHEDULES_FILE}"
 
     # Supprimer la tâche cron
     remove_cron_job "${name}"
