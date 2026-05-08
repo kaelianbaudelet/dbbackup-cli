@@ -54,16 +54,16 @@ else
     echo -e "${YELLOW}Note : Téléchargement des composants nécessaires...${NC}"
     
     # Télécharger le binaire principal
-    curl -sSL "$RAW_URL/dbbackup" -o "$INSTALL_DIR/dbbackup"
+    curl -sSLf "$RAW_URL/dbbackup" -o "$INSTALL_DIR/dbbackup"
     
     # Télécharger les bibliothèques
     LIBS=("config.sh" "remote.sh" "backup.sh" "encryption.sh" "transfer.sh" "schedule.sh" "restore.sh")
     for lib in "${LIBS[@]}"; do
-        curl -sSL "$RAW_URL/lib/$lib" -o "$INSTALL_DIR/lib/$lib"
+        curl -sSLf "$RAW_URL/lib/$lib" -o "$INSTALL_DIR/lib/$lib"
     done
     
-    # Tentative de téléchargement de la config par défaut
-    curl -sSL "$RAW_URL/config/dbbackup.conf" -o "$INSTALL_DIR/config/dbbackup.conf" || echo "Configuration par défaut non trouvée, elle sera générée au premier lancement."
+    # Tentative de téléchargement de la config par défaut (optionnel)
+    curl -sSLf "$RAW_URL/config/dbbackup.conf" -o "$INSTALL_DIR/config/dbbackup.conf" || echo "Configuration par défaut non trouvée, elle sera générée au premier lancement."
 fi
 
 # Permissions
