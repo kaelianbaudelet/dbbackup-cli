@@ -252,16 +252,16 @@
     <div class="container">
         <nav>
             <div class="brand">dbbackup<span>-cli</span> <div class="version-badge">v1.2.0</div></div>
-            <div class="status-badge"><div class="status-dot"></div> system stable</div>
+            <div class="status-badge"><div class="status-dot"></div> système stable</div>
         </nav>
 
         <section class="hero">
-            <h1>Automate backups.</h1>
-            <p>A simple, reliable Bash CLI to backup, encrypt, and transfer MariaDB/MySQL databases. Built for stability and speed.</p>
+            <h1>Automatisez vos sauvegardes.</h1>
+            <p>Un CLI Bash simple et fiable pour sauvegarder, chiffrer et transférer vos bases MariaDB/MySQL. Conçu pour la stabilité et la performance.</p>
         </section>
 
         <div class="install-wrap">
-            <span class="install-label">Quick Installation</span>
+            <span class="install-label">Installation Rapide</span>
             <div class="terminal-window">
                 <div class="terminal-header">
                     <div class="dot"></div>
@@ -270,48 +270,48 @@
                 </div>
                 <div class="terminal-body">
                     <div class="command" id="cmdText">curl -o install.sh https://raw.githubusercontent.com/kaelianbaudelet/dbbackup-cli/main/install.sh && chmod +x install.sh && sudo ./install.sh</div>
-                    <button class="copy-button" onclick="copyCmd()">COPY</button>
+                    <button class="copy-button" onclick="copyCmd()">COPIER</button>
                 </div>
             </div>
         </div>
 
         <div class="grid">
             <div class="doc-section">
-                <h2>Capabilities</h2>
+                <h2>Capacités</h2>
                 <ul>
                     <li>
-                        <strong>Native Scheduler</strong>
-                        <p>Built-in cron management. Schedule backups with standard cron expressions without leaving the CLI.</p>
+                        <strong>Planificateur Natif</strong>
+                        <p>Gestion cron intégrée. Planifiez vos sauvegardes avec des expressions cron standards sans quitter le CLI.</p>
                         <div class="snippet">dbbackup schedule add -n <span>"daily"</span> -c <span>"0 2 * * *"</span></div>
                     </li>
                     <li>
-                        <strong>AES-256 Encryption</strong>
-                        <p>Encrypt sensitive dumps locally using OpenSSL before any transfer. Secure by default.</p>
+                        <strong>Chiffrement AES-256</strong>
+                        <p>Chiffrez vos dumps localement avec OpenSSL avant tout transfert. Sécurisé par défaut.</p>
                         <div class="snippet">dbbackup backup --encrypt -d <span>production_db</span></div>
                     </li>
                     <li>
-                        <strong>Remote Transfer</strong>
-                        <p>Automated SCP/SSH transfers to remote storage nodes with key-based authentication support.</p>
+                        <strong>Transfert Distant</strong>
+                        <p>Transferts SCP/SSH automatisés vers des serveurs de stockage distants avec support d'authentification par clé.</p>
                     </li>
                 </ul>
             </div>
 
             <div class="doc-section">
-                <h2>Quick Start</h2>
+                <h2>Démarrage Rapide</h2>
                 <ul>
                     <li>
-                        <strong>Create a backup</strong>
-                        <p>Dumps the database, compresses it with gzip, and stores it in /usr/local/lib/dbbackup-cli/backups.</p>
+                        <strong>Créer une sauvegarde</strong>
+                        <p>Dump la base, la compresse avec gzip, et la stocke dans /usr/local/lib/dbbackup-cli/backups.</p>
                         <div class="snippet">dbbackup backup -u root -p secret -d mydb</div>
                     </li>
                     <li>
-                        <strong>Restore data</strong>
-                        <p>Decompress and import a specific backup file into a target database.</p>
+                        <strong>Restaurer des données</strong>
+                        <p>Décompresse et importe un fichier de sauvegarde spécifique dans une base cible.</p>
                         <div class="snippet">dbbackup restore -f <span>backup_file.sql.gz</span> -d mydb</div>
                     </li>
                     <li>
-                        <strong>Check logs</strong>
-                        <p>View the operation history and verify that automated tasks ran successfully.</p>
+                        <strong>Consulter les logs</strong>
+                        <p>Visualisez l'historique des opérations et vérifiez que les tâches automatisées se sont bien déroulées.</p>
                         <div class="snippet">dbbackup log list</div>
                     </li>
                 </ul>
@@ -319,8 +319,8 @@
         </div>
 
         <footer>
-            <div>&copy; 2024 dbbackup-cli project</div>
-            <div>uninstaller: <code>sudo /usr/local/lib/dbbackup-cli/uninstall.sh</code></div>
+            <div>&copy; 2024 projet dbbackup-cli</div>
+            <div>désinstallation : <code>sudo /usr/local/lib/dbbackup-cli/uninstall.sh</code></div>
         </footer>
     </div>
 
@@ -329,10 +329,10 @@
             const text = document.getElementById('cmdText').innerText;
             navigator.clipboard.writeText(text);
             const btn = document.querySelector('.copy-button');
-            btn.innerText = 'COPIED!';
+            btn.innerText = 'COPIÉ !';
             btn.style.background = '#238636';
             setTimeout(() => {
-                btn.innerText = 'COPY';
+                btn.innerText = 'COPIER';
                 btn.style.background = '#58a6ff';
             }, 2000);
         }
