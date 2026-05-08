@@ -33,6 +33,20 @@ Cette commande va :
 2. Le rendre exécutable.
 3. L'exécuter avec les privilèges root pour installer le binaire dans `/usr/bin/dbbackup` et les fichiers nécessaires dans `/usr/local/lib/dbbackup-cli`.
 
+## Désinstallation
+
+Pour désinstaller l'outil, vous pouvez exécuter :
+
+```bash
+sudo /usr/local/lib/dbbackup-cli/uninstall.sh
+```
+
+Ou, si vous avez encore le dépôt local :
+
+```bash
+sudo ./uninstall.sh
+```
+
 ## Lancer l outil
 
 - Placez vous dans `dbbackup-cli` et lancez `./dbbackup --help` pour voir le rappel d utilisation.
