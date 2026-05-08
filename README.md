@@ -20,6 +20,19 @@ Fonctionnalites principales :
 - `ssh` et `scp`, plus `sshpass` si vous utilisez un mot de passe SSH.
 - Acces a `crontab` pour les planifications.
 
+## Installation
+
+Pour installer `dbbackup-cli` globalement sur votre système Linux, vous pouvez utiliser la commande suivante :
+
+```bash
+curl -o install.sh https://raw.githubusercontent.com/kaelianbaudelet/dbbackup-cli/main/install.sh && chmod +x install.sh && sudo ./install.sh
+```
+
+Cette commande va :
+1. Télécharger le script d'installation.
+2. Le rendre exécutable.
+3. L'exécuter avec les privilèges root pour installer le binaire dans `/usr/bin/dbbackup` et les fichiers nécessaires dans `/usr/local/lib/dbbackup-cli`.
+
 ## Lancer l outil
 
 - Placez vous dans `dbbackup-cli` et lancez `./dbbackup --help` pour voir le rappel d utilisation.
